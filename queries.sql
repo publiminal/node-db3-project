@@ -15,7 +15,7 @@
 SELECT * FROM schemes LEFT JOIN steps ON schemes.scheme_id = steps.scheme_id ;  
 
 SELECT  schemes.*,  
-        count(*) as number_of_steps 
+        count(steps.step_id) as number_of_steps 
     FROM schemes 
         LEFT JOIN steps 
             ON schemes.scheme_id = steps.scheme_id  
@@ -30,3 +30,14 @@ SELECT  schemes.*,
           ON sc.scheme_id = st.scheme_id
       GROUP BY sc.scheme_id
       ORDER BY sc.scheme_id ASC;
+
+
+
+          SELECT
+          sc.scheme_name,
+          st.*
+      FROM schemes as sc
+      LEFT JOIN steps as st
+          ON sc.scheme_id = st.scheme_id
+      WHERE sc.scheme_id = 1
+      ORDER BY st.step_number ASC;
